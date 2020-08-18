@@ -68,24 +68,36 @@ function profileIterator(profiles) {
     };
 }
 
+const saveBtn = document
+    .getElementById('matchBtn')
+    .addEventListener('click', savePerson);
+const declineBtn = document.querySelector('decline').addEventListener('click', decline);
 
-
-const saveBtn = document.getElementById('matchBtn').addEventListener('click', savePerson); 
-
-
-function savePerson(){ 
-    const output = `
+function savePerson() {
+    const outputMatched = `
     <div class="alert alert-success" role="alert">
-        <h4 class="alert-heading">User saved to your favorites</h4>
+        <h4 class="alert-heading">Matched ! ✅</h4>
         <p></p>
         <hr>
         </div>
-    `;  
-    const savedEl = document.getElementById('saved'); 
-    savedEl.innerHTML = output;   
-    setTimeout(() => {  
-        savedEl.innerHTML = '';
-        savedEl.remove();  
-    }, 2000)
-} 
+    `;
+    const savedEl = document.getElementById('saved');
+    savedEl.innerHTML = outputMatched;
+    setTimeout(() => {
+        savedEl.remove();
+    }, 2000);
+}
 
+function decline() {
+    const outputDeclined = ` 
+    <div class="alert alert-danger" role="alert"> 
+        <h4 class="alert-heading">Declined ! ❌</h4> 
+        <hr>
+        </div> 
+        `;
+    const decline = document.getElementById('decline');
+    decline.innerHTML = outputDeclined;
+    setTimeout(() => {
+        decline.remove();
+    }, 2000);
+}
