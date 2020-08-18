@@ -47,7 +47,9 @@ function nextProfile() {
       <li class="list-group-item">Preference: ${currentProfile.gender} who is looking for ${currentProfile.lookingfor}</li>  
       </ul>  
     `;
-        document.getElementById('imageDisplay').innerHTML = `<img src="${currentProfile.image}">`;
+        document.getElementById(
+            'imageDisplay'
+        ).innerHTML = `<img src="${currentProfile.image}">`;
     } else {
         window.location.reload(); // reload page if at end of array
     }
@@ -64,4 +66,24 @@ function profileIterator(profiles) {
                 : { done: true };
         },
     };
+}
+
+
+
+const saveBtn = document.getElementById('matchBtn').addEventListener('click', savePerson); 
+
+
+function savePerson(){
+    const output = `
+    <div class="card"> 
+        <div class="card-body" style="background-color:red;">  
+            <h1>User saved to your list</h1>
+        </div> 
+        </div> 
+    `;  
+    const savedEl = document.getElementById('saved'); 
+    savedEl.innerHTML = output;  
+    setTimeout(() => {  
+        savedEl.remove();
+    }, 2000)
 }
