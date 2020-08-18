@@ -73,17 +73,19 @@ function profileIterator(profiles) {
 const saveBtn = document.getElementById('matchBtn').addEventListener('click', savePerson); 
 
 
-function savePerson(){
+function savePerson(){ 
     const output = `
-    <div class="card"> 
-        <div class="card-body" style="background-color:red;">  
-            <h1>User saved to your list</h1>
-        </div> 
-        </div> 
+    <div class="alert alert-success" role="alert">
+        <h4 class="alert-heading">User saved to your favorites</h4>
+        <p></p>
+        <hr>
+        </div>
     `;  
     const savedEl = document.getElementById('saved'); 
-    savedEl.innerHTML = output;  
+    savedEl.innerHTML = output;   
     setTimeout(() => {  
-        savedEl.remove();
+        savedEl.innerHTML = '';
+        savedEl.remove();  
     }, 2000)
-}
+} 
+
