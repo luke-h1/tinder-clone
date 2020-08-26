@@ -34,7 +34,6 @@ const data = [
 
 const profiles = profileIterator(data);
 nextProfile();
-document.getElementById('next').addEventListener('click', nextProfile);
 
 function nextProfile() {
   const currentProfile = profiles.next().value;
@@ -46,7 +45,7 @@ function nextProfile() {
           <div class="card-image">
           <img src="${currentProfile.image}">
           <span class="card-title">${currentProfile.name}</span>
-            <a class="btn-floating halfway-fab waves-effect waves-light red"><i class="material-icons">add</i></a>
+            <a class="btn-floating halfway-fab waves-effect waves-light red"><i class="material-icons"></i></a>
             </div>
           <div class="card-content">
           <ul class="list-group"> 
@@ -77,38 +76,22 @@ function profileIterator(profiles) {
   };
 }
 
-const saveBtn = document
-  .getElementById('matchBtn')
-  .addEventListener('click', savePerson);
-const declineBtn = document
-  .querySelector('decline')
-  .addEventListener('click', decline);
-
 function savePerson() {
   const outputMatched = `
-    <div class="alert alert-success" role="alert">
-        <h4 class="alert-heading">Matched ! ✅</h4>
-        <p></p>
-        <hr>
+        <h4>Matched ! ✅</h4>
         </div>
     `;
-  const savedEl = document.getElementById('saved');
-  savedEl.innerHTML = outputMatched;
+  const match = document.getElementById('accepted');
+  match.innerHTML = outputMatched;
   setTimeout(() => {
-    savedEl.remove();
-  }, 2000);
+    match.remove();
+    window.location.reload(); // need a better solution to this
+  }, 1000);
 }
 
-function decline() {
-  const outputDeclined = ` 
-    <div class="alert alert-danger" role="alert"> 
-        <h4 class="alert-heading">Declined ! ❌</h4> 
-        <hr>
-        </div> 
-        `;
-  const decline = document.getElementById('decline');
-  decline.innerHTML = outputDeclined;
-  setTimeout(() => {
-    decline.remove();
-  }, 2000);
-}
+// EVENT LISTENERS
+const saveBtn = document
+  .getElementById('matched')
+  .addEventListener('click', savePerson);
+
+document.getElementById('next').addEventListener('click', nextProfile);
